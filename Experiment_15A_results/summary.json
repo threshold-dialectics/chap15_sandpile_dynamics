@@ -1,0 +1,139 @@
+{
+  "avalanche_stats": {
+    "n_large": 2436,
+    "n_total": 8787,
+    "powerlaw_exponent": -1.3864692617805894,
+    "powerlaw_r2": 0.8801592580777358,
+    "size_max": 6984.0,
+    "size_mean": 28.200295891658133,
+    "size_median": 5.0,
+    "size_min": 1.0
+  },
+  "cumulative_cost": {
+    "final_beta_cost": 0.0,
+    "final_g_cost": 0.0,
+    "final_total_cost": 0.0
+  },
+  "derivative_sign_patterns": {
+    "high_negative_couple": {
+      "N": 30,
+      "q1": 0,
+      "q2": 2,
+      "q3": 8,
+      "q4": 20
+    },
+    "high_positive_couple": {
+      "N": 47,
+      "beta_neg": 6,
+      "both_neg": 15,
+      "both_pos": 14,
+      "tightening": 12
+    }
+  },
+  "event_counts": {
+    "jaccard_index_overlap": 0.1186521877994251,
+    "n_large_avalanches": 2436,
+    "n_thetaT_breaches": 4569
+  },
+  "event_overlap": {
+    "breach_only": 3826,
+    "lav_and_breach": 743,
+    "lav_only": 1693,
+    "neither": 13739
+  },
+  "fcrit_slack": {
+    "baseline_mean": 2027.438596491228,
+    "baseline_sd": 120.26166420625796,
+    "final_value": 1570.0,
+    "post_burnin_trend_slope": -0.0015452644717723035
+  },
+  "mean_beta_lever_p": 3.009092307692308,
+  "mean_g_lever_p": 1.0,
+  "mean_safety_margin": 0.09028167132201301,
+  "metadata": {
+    "burn_in_steps": 1000,
+    "experiment_id": "Experiment_15A",
+    "grid_size": [
+      30,
+      30
+    ],
+    "rng_seed": 42,
+    "total_steps": 20000
+  },
+  "quadrant_counts": {
+    "baseline": [
+      3.0,
+      0.0,
+      5.0,
+      106.0
+    ],
+    "chi2": 183.49231190286824,
+    "p": 1.5532719800794367e-39,
+    "pre_event": [
+      6514.0,
+      8.0,
+      24.0,
+      12912.0
+    ]
+  },
+  "strain_stats": {
+    "max": 0.85,
+    "mean": 0.4391862610031403,
+    "median": 0.45,
+    "min": 0.0,
+    "q25": 0.35,
+    "q75": 0.5,
+    "skew": -0.33505819781376633
+  },
+  "summary_by_metric": {
+    "couple_p": {
+      "baseline_mean": -0.17169737553097134,
+      "baseline_se": 0.02919067847127035,
+      "pre_LA_mean": 0.00011476215406951432,
+      "pre_LA_p": 1.1385077271964154e-79,
+      "pre_LA_se": 0.0004504421203293425,
+      "pre_LA_u": 171907.0,
+      "pre_\u0398_mean": 0.0015020126477045378,
+      "pre_\u0398_p": 2.716605049125327e-88,
+      "pre_\u0398_se": 0.0003254706386285621,
+      "pre_\u0398_u": 323288.0
+    },
+    "hazard_rate_p_clipped": {
+      "baseline_mean": 0.2032948750668418,
+      "baseline_se": 0.005124974570247401,
+      "pre_LA_mean": 0.3713378824665987,
+      "pre_LA_p": 1.3375077596709917e-35,
+      "pre_LA_se": 0.002405907737952398,
+      "pre_LA_u": 437215.0,
+      "pre_\u0398_mean": 0.3713378824665987,
+      "pre_\u0398_p": 1.3375077596709917e-35,
+      "pre_\u0398_se": 0.002405907737952398,
+      "pre_\u0398_u": 437215.0
+    },
+    "speed_p_smooth": {
+      "baseline_mean": 0.47182513921664776,
+      "baseline_se": 0.0034261513718900965,
+      "pre_LA_mean": 0.5493321236976294,
+      "pre_LA_p": 3.755518789805667e-15,
+      "pre_LA_se": 0.004261285324100478,
+      "pre_LA_u": 198595.5,
+      "pre_\u0398_mean": 0.5747388185749553,
+      "pre_\u0398_p": 2.2153736393177046e-18,
+      "pre_\u0398_se": 0.004564120682407188,
+      "pre_\u0398_u": 384016.0
+    }
+  },
+  "tightening_loop": {
+    "baseline_prop": 0.9298245614035088,
+    "pre_LA_prop": 0.6694581280788178,
+    "pre_\u0398_prop": 0.6336134821623988,
+    "pvals": {
+      "pre_LA_vs_base": 1.0,
+      "pre_\u0398_vs_base": 1.0
+    }
+  },
+  "trend_slopes": {
+    "avg_delta_P_p": -1.5716886704965272e-07,
+    "theta_T_p": -4.6304887158618496e-07
+  }
+}

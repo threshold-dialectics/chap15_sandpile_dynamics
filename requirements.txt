@@ -1,0 +1,12 @@
+# Core numerical & data-handling libraries
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+
+# Visualisation
+matplotlib>=3.8
+seaborn>=0.13      # optional but used for many plots
+
+# Statistics / modelling
+statsmodels>=0.14
+powerlaw>=1.5      # for power-law exponent fitting
