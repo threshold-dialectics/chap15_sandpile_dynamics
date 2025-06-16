@@ -8,6 +8,18 @@ import pandas as pd
 from scipy.stats import pearsonr
 import matplotlib.pyplot as plt
 
+# Global plot style settings
+plt.rcParams.update({
+    "font.size": 14,
+    "axes.labelsize": 14,
+    "axes.titlesize": 14,
+    "legend.fontsize": 14,
+    "xtick.labelsize": 12,
+    "ytick.labelsize": 12,
+})
+
+SAVEFIG_DPI = 350
+
 from td_core import (
     SandpileBTW,
     calculate_raw_instantaneous_strain_p,
@@ -331,7 +343,7 @@ def main():
     plt.legend()
     plt.grid(True, linestyle=":", alpha=0.7)
     plt.tight_layout()
-    plt.savefig(os.path.join(results_dir, "sotc_safety_margin_G_p.png"))
+    plt.savefig(os.path.join(results_dir, "sotc_safety_margin_G_p.png"), dpi=SAVEFIG_DPI)
     plt.close()
 
     avalanche_sizes = df_log.loc[df_log["avalanche_size"] > 0, "avalanche_size"]
@@ -358,7 +370,7 @@ def main():
         plt.title(f"Avalanche Size Distribution (Log-Log) - {experiment_name}")
         plt.grid(True, which="both", ls="-", alpha=0.5)
         plt.tight_layout()
-        plt.savefig(os.path.join(results_dir, "sotc_avalanche_distribution_loglog.png"))
+        plt.savefig(os.path.join(results_dir, "sotc_avalanche_distribution_loglog.png"), dpi=SAVEFIG_DPI)
         plt.close()
 
     # Full diagnostics 7-panel plot
@@ -413,7 +425,7 @@ def main():
 
     plt.suptitle(f"Full TD Diagnostics and Sandpile Dynamics ({experiment_name})", fontsize=18, y=0.99)
     fig.tight_layout(rect=[0, 0.03, 1, 0.98])
-    plt.savefig(os.path.join(results_dir, f"sotc_full_diagnostics_timeseries_{experiment_name}.png"))
+    plt.savefig(os.path.join(results_dir, f"sotc_full_diagnostics_timeseries_{experiment_name}.png"), dpi=SAVEFIG_DPI)
     plt.close()
 
     print(f"\nSOTC Simulation {experiment_name} complete. Results in {results_dir}")

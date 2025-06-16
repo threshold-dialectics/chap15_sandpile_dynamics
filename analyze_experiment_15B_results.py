@@ -10,6 +10,18 @@ import pandas as pd
 from scipy.stats import mannwhitneyu, chi2_contingency, pearsonr, linregress
 import matplotlib.pyplot as plt
 
+# Global plot style settings
+plt.rcParams.update({
+    "font.size": 14,
+    "axes.labelsize": 14,
+    "axes.titlesize": 14,
+    "legend.fontsize": 14,
+    "xtick.labelsize": 12,
+    "ytick.labelsize": 12,
+})
+
+SAVEFIG_DPI = 350
+
 from td_core import calculate_derivatives_savgol
 
 G_UPPER_SOTC_BOUND = 0.05
@@ -189,7 +201,7 @@ def plot_full_diagnostics(df_run: pd.DataFrame, run_label: str, out_path: str) -
 
     plt.suptitle(f'Full TD Diagnostics and Sandpile Dynamics ({run_label})', fontsize=18, y=0.99)
     fig.tight_layout(rect=[0, 0.03, 1, 0.98])
-    plt.savefig(out_path)
+    plt.savefig(out_path, dpi=SAVEFIG_DPI)
     plt.close()
 
 
@@ -338,7 +350,7 @@ def main():
         plt.ylabel('Density')
         plt.legend()
         plt.tight_layout()
-        plt.savefig(os.path.join(summary_dir, 'speed_distribution.png'))
+        plt.savefig(os.path.join(summary_dir, 'speed_distribution.png'), dpi=SAVEFIG_DPI)
         plt.close()
         plt.figure(figsize=(12,5))
         plt.hist(sotc_df['couple_p'], bins=30, alpha=0.7, density=True, label='SOTC', range=(-1,1))
@@ -347,7 +359,7 @@ def main():
         plt.ylabel('Density')
         plt.legend()
         plt.tight_layout()
-        plt.savefig(os.path.join(summary_dir, 'couple_distribution.png'))
+        plt.savefig(os.path.join(summary_dir, 'couple_distribution.png'), dpi=SAVEFIG_DPI)
         plt.close()
 
     # ------------------------------------------------------------------
@@ -439,7 +451,7 @@ def main():
             plt.xlabel('Steps before large avalanche')
             plt.legend()
         plt.tight_layout()
-        plt.savefig(os.path.join(summary_dir, 'sea_comparison.png'))
+        plt.savefig(os.path.join(summary_dir, 'sea_comparison.png'), dpi=SAVEFIG_DPI)
         plt.close()
 
     # ------------------------------------------------------------------
@@ -492,7 +504,7 @@ def main():
                     if idx == 0:
                         plt.ylabel('log10(size)')
             plt.tight_layout()
-            plt.savefig(os.path.join(summary_dir, 'h4_pre_event_correlations.png'))
+            plt.savefig(os.path.join(summary_dir, 'h4_pre_event_correlations.png'), dpi=SAVEFIG_DPI)
             plt.close()
 
     # Advanced: fit power law exponent within each sustained SOTC segment
@@ -564,7 +576,7 @@ def main():
                 if idx == 0:
                     plt.ylabel('alpha')
         plt.tight_layout()
-        plt.savefig(os.path.join(summary_dir, 'alpha_td_correlations.png'))
+        plt.savefig(os.path.join(summary_dir, 'alpha_td_correlations.png'), dpi=SAVEFIG_DPI)
         plt.close()
 
     # Combined avalanche distribution
@@ -579,7 +591,7 @@ def main():
     plt.xlabel('Avalanche size')
     plt.ylabel('Frequency')
     plt.tight_layout()
-    plt.savefig(os.path.join(summary_dir, 'combined_avalanche_distribution.png'))
+    plt.savefig(os.path.join(summary_dir, 'combined_avalanche_distribution.png'), dpi=SAVEFIG_DPI)
     plt.close()
 
     alpha_g, D_g, xmin_g = fit_power_law_robust(all_aval.values)

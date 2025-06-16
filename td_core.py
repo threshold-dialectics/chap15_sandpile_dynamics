@@ -5,6 +5,18 @@ import numpy as np
 import pandas as pd
 from scipy.signal import savgol_filter
 import matplotlib.pyplot as plt
+
+# Global plot style settings
+plt.rcParams.update({
+    "font.size": 14,
+    "axes.labelsize": 14,
+    "axes.titlesize": 14,
+    "legend.fontsize": 14,
+    "xtick.labelsize": 12,
+    "ytick.labelsize": 12,
+})
+
+SAVEFIG_DPI = 350
 from typing import Sequence, Tuple, Set
 
 class SandpileBTW:
@@ -138,7 +150,7 @@ def plot_timeseries(df: pd.DataFrame, columns: Sequence[str], labels: Sequence[s
     plt.legend()
     plt.title(title)
     plt.tight_layout()
-    plt.savefig(os.path.join(results_dir, filename))
+    plt.savefig(os.path.join(results_dir, filename), dpi=SAVEFIG_DPI)
     plt.close()
 
 
@@ -148,7 +160,7 @@ def plot_histogram(data: Sequence[float], bins: Sequence[float], title: str, xla
     plt.xlabel(xlabel)
     plt.title(title)
     plt.tight_layout()
-    plt.savefig(os.path.join(results_dir, filename))
+    plt.savefig(os.path.join(results_dir, filename), dpi=SAVEFIG_DPI)
     plt.close()
 
 

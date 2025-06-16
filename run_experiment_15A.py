@@ -8,6 +8,18 @@ import pandas as pd
 from scipy.stats import pearsonr, mannwhitneyu, chi2_contingency, linregress
 import matplotlib.pyplot as plt
 
+# Global plot style settings
+plt.rcParams.update({
+    "font.size": 14,
+    "axes.labelsize": 14,
+    "axes.titlesize": 14,
+    "legend.fontsize": 14,
+    "xtick.labelsize": 12,
+    "ytick.labelsize": 12,
+})
+
+SAVEFIG_DPI = 350
+
 from td_core import (
     SandpileBTW,
     calculate_raw_instantaneous_strain_p,
@@ -345,7 +357,7 @@ plt.xlabel('Time Step')
 plt.ylabel('Time-Averaged Systemic Strain (avg_delta_P_p)')
 plt.title(f'Time-Averaged Systemic Strain over Time ({EXPERIMENT_NAME})')
 plt.tight_layout()
-plt.savefig(os.path.join(RESULTS_DIR, 'averaged_strain_timeseries_experiment15A.png'))
+plt.savefig(os.path.join(RESULTS_DIR, 'averaged_strain_timeseries_experiment15A.png'), dpi=SAVEFIG_DPI)
 plt.close() # Close plot to free memory
 
 non_zero_averaged_strain = df_log['avg_delta_P_p'][df_log['avg_delta_P_p'] > 1e-6] # Use a small epsilon for "non-zero"
@@ -363,7 +375,7 @@ if not non_zero_averaged_strain.empty:
     plt.ylabel('Frequency')
     plt.title(f'Histogram of Non-zero Time-Averaged Systemic Strain ({EXPERIMENT_NAME})')
     plt.tight_layout()
-    plt.savefig(os.path.join(RESULTS_DIR, 'averaged_strain_histogram_experiment15A.png'))
+    plt.savefig(os.path.join(RESULTS_DIR, 'averaged_strain_histogram_experiment15A.png'), dpi=SAVEFIG_DPI)
     plt.close()
 
 
@@ -388,7 +400,7 @@ if not avalanche_data.empty:
     plt.ylabel("Frequency (log scale)")
     plt.title(f"Avalanche Size Distribution ({EXPERIMENT_NAME})")
     plt.grid(True, which="both", ls="-", alpha=0.5)
-    plt.savefig(os.path.join(RESULTS_DIR, "avalanche_distribution_experiment15A.png"))
+    plt.savefig(os.path.join(RESULTS_DIR, "avalanche_distribution_experiment15A.png"), dpi=SAVEFIG_DPI)
     plt.close()
 else:
     print("No avalanches recorded to plot histogram.")
@@ -459,7 +471,7 @@ axs[5].legend(loc='upper left')
 
 plt.suptitle(f"TD Diagnostics and Sandpile Dynamics ({EXPERIMENT_NAME})", fontsize=18, y=0.99)
 fig.tight_layout(rect=[0, 0.03, 1, 0.97])
-plt.savefig(os.path.join(RESULTS_DIR, "td_diagnostics_timeseries_experiment15A.png"))
+plt.savefig(os.path.join(RESULTS_DIR, "td_diagnostics_timeseries_experiment15A.png"), dpi=SAVEFIG_DPI)
 plt.close()
 
 # --- Event Overlap Analysis ---
@@ -589,7 +601,7 @@ if categories:
         yval = bar.get_height()
         err_val = errors[bar_idx] if errors and len(errors) > bar_idx else 0
         plt.text(bar.get_x() + bar.get_width()/2.0, yval + err_val + 0.05 * max_mean_val , f'{yval:.3f}', ha='center', va='bottom')
-    plt.savefig(os.path.join(RESULTS_DIR, "avg_speed_comparison_experiment15A.png"))
+    plt.savefig(os.path.join(RESULTS_DIR, "avg_speed_comparison_experiment15A.png"), dpi=SAVEFIG_DPI)
     plt.close()
 else:
     print("No valid event or baseline data recorded to plot average speeds comparison.")
@@ -667,7 +679,7 @@ if categories_c:
         if yval == 0: text_y_pos = 0.05 * max_mean_c_val # Avoid placing text at 0 if bar is 0
         plt.text(bar.get_x() + bar.get_width()/2.0, text_y_pos , f'{yval:.3f}', ha='center', va='bottom' if yval >=0 else 'top')
     plt.ylim(min(0, min(means_c)-0.1) if means_c else -0.1, max(0, max(means_c)+0.1) if means_c else 0.1) # Adjust y-limits for CoupleIndex
-    plt.savefig(os.path.join(RESULTS_DIR, "avg_couple_comparison_experiment15A.png"))
+    plt.savefig(os.path.join(RESULTS_DIR, "avg_couple_comparison_experiment15A.png"), dpi=SAVEFIG_DPI)
     plt.close()
 else:
     print("No valid event or baseline data recorded to plot average couple index comparison.")
@@ -755,7 +767,7 @@ if not high_couple_df.empty:
     plt.xlim(xlim_curr[0] - abs(xlim_curr[0])*0.1 if xlim_curr[0]!=0 else -1e-9, xlim_curr[1] + abs(xlim_curr[1])*0.1 if xlim_curr[1]!=0 else 1e-9)
     plt.ylim(ylim_curr[0] - abs(ylim_curr[0])*0.1 if ylim_curr[0]!=0 else -1e-9, ylim_curr[1] + abs(ylim_curr[1])*0.1 if ylim_curr[1]!=0 else 1e-9)
     plt.tight_layout()
-    plt.savefig(os.path.join(RESULTS_DIR, 'pre_event_derivative_scatter_experiment15A.png'))
+    plt.savefig(os.path.join(RESULTS_DIR, 'pre_event_derivative_scatter_experiment15A.png'), dpi=SAVEFIG_DPI)
     plt.close()
     high_pos_sign_dict = {
         'N': int(total_high),
@@ -805,7 +817,7 @@ if not neg_couple_df.empty:
     plt.xlim(xlim_curr_neg[0] - abs(xlim_curr_neg[0])*0.1 if xlim_curr_neg[0]!=0 else -1e-9, xlim_curr_neg[1] + abs(xlim_curr_neg[1])*0.1 if xlim_curr_neg[1]!=0 else 1e-9)
     plt.ylim(ylim_curr_neg[0] - abs(ylim_curr_neg[0])*0.1 if ylim_curr_neg[0]!=0 else -1e-9, ylim_curr_neg[1] + abs(ylim_curr_neg[1])*0.1 if ylim_curr_neg[1]!=0 else 1e-9)
     plt.tight_layout()
-    plt.savefig(os.path.join(RESULTS_DIR, 'pre_event_negative_deriv_scatter_experiment15A.png'))
+    plt.savefig(os.path.join(RESULTS_DIR, 'pre_event_negative_deriv_scatter_experiment15A.png'), dpi=SAVEFIG_DPI)
     plt.close()
     high_neg_sign_dict = {
         'N': int(tot_neg),
@@ -876,7 +888,7 @@ plt.xlabel('Time Step')
 plt.ylabel('Hazard_Rate_p (Clipped)')
 plt.title(f'Conceptual Hazard Rate over Time ({EXPERIMENT_NAME})')
 plt.tight_layout()
-plt.savefig(os.path.join(RESULTS_DIR, 'hazard_rate_timeseries_experiment15A.png'))
+plt.savefig(os.path.join(RESULTS_DIR, 'hazard_rate_timeseries_experiment15A.png'), dpi=SAVEFIG_DPI)
 plt.close()
 
 
